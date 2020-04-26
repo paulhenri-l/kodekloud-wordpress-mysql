@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-mysql
+spec:
+  type: ClusterIp
+  ports:
+    - port: 3306
