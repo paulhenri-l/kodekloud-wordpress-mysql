@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: mysql
 spec:
+  replicas: 1
   selector:
     matchLabels:
       name: mysql-pod
@@ -16,7 +17,7 @@ spec:
           image: mysql:5.7
           volumeMounts:
             - mountPath: /var/lib/mysql
-              name: mysql-v
+              name: mysql-persistent-storage
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
@@ -24,6 +25,6 @@ spec:
                   key: password
                   name: mysql-pass
       volumes:
-        - name: mysql-v
+        - name: mysql-persistent-storage
           persistentVolumeClaim:
             claimName: mysql-persistent-storage
